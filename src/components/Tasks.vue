@@ -11,6 +11,7 @@ export default {
   components: {
     Task,
   },
+  emits: ["delete-task"],
   methods: {
     deleteTask(id) {
       this.$emit("delete-task", id);
