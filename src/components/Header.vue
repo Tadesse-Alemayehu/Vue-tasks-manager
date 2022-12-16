@@ -1,7 +1,11 @@
 <template>
   <header>
     <h1>{{ title }}</h1>
-    <Button text="Add Task" color="green" />
+    <Button
+      @toggle-show-add-task="$emit('toggle-show-add-task')"
+      text="Add Task"
+      color="green"
+    />
   </header>
 </template>
 
@@ -9,6 +13,7 @@
 import Button from "./partials/Button.vue";
 export default {
   name: "HeaderElement",
+  emits: ["toggle-show-add-task"],
   props: {
     title: {
       type: String,

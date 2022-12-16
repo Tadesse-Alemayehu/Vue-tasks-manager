@@ -1,7 +1,10 @@
 <template>
   <div class="container">
-    <Header title="this is sample text" />
-    <AddTask @add-task="addNewTask" />
+    <Header
+      @toggle-show-add-task="toggleShowAddTask"
+      title="this is sample text"
+    />
+    <AddTask v-show="showAddTask" @add-task="addNewTask" />
     <Tasks @toggle-task="toggleTask" @delete-task="deleteTask" :tasks="tasks" />
   </div>
 </template>
@@ -20,6 +23,7 @@ export default {
   data() {
     return {
       tasks: [],
+      showAddTask: false,
     };
   },
   emits: ["delete-task"],
@@ -34,8 +38,10 @@ export default {
       );
     },
     addNewTask(task) {
-      console.log(task);
       this.tasks.push({ ...task, id: Math.floor(Math.random() * 1000) });
+    },
+    toggleShowAddTask() {
+      this.showAddTask = !this.showAddTask;
     },
   },
   created() {

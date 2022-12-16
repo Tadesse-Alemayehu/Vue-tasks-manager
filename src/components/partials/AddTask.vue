@@ -12,7 +12,7 @@
     <div class="form-control">
       <label>Day & Time</label>
       <input
-        v-model="task.date"
+        v-model="task.day"
         type="text"
         name="day"
         placeholder="Add Day & Time"
@@ -35,7 +35,7 @@ export default {
     return {
       task: {
         text: "",
-        date: "",
+        day: "",
         reminder: false,
       },
     };
@@ -46,7 +46,7 @@ export default {
       this.$emit("add-task", this.task);
       this.task = {
         text: "",
-        date: "",
+        day: "",
         reminder: false,
       };
     },

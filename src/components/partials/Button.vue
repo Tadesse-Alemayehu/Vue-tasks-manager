@@ -1,5 +1,9 @@
 <template>
-  <button @click="onClick()" class="btn" :style="`background-color: ${color}`">
+  <button
+    @click="$emit('toggle-show-add-task')"
+    class="btn"
+    :style="`background-color: ${color}`"
+  >
     {{ text }}
   </button>
 </template>
@@ -7,6 +11,7 @@
 <script>
 export default {
   name: "ButtonComp",
+  emits: ["toggle-show-add-task"],
   props: {
     text: {
       type: String,
@@ -16,10 +21,6 @@ export default {
       type: String,
     },
   },
-  methods: {
-    onClick() {
-      console.log("button clicked");
-    },
-  },
+  methods: {},
 };
 </script>
