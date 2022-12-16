@@ -1,11 +1,13 @@
 <template>
   <div class="container">
+    <router-view></router-view>
     <Header
       @toggle-show-add-task="toggleShowAddTask"
       title="this is sample text"
     />
     <AddTask v-show="showAddTask" @add-task="addNewTask" />
     <Tasks @toggle-task="toggleTask" @delete-task="deleteTask" :tasks="tasks" />
+    <!-- <About /> -->
   </div>
 </template>
 
@@ -13,12 +15,14 @@
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/partials/AddTask";
+// import About from "./views/footer";
 export default {
   name: "App",
   components: {
     Header,
     Tasks,
     AddTask,
+    // About,
   },
   data() {
     return {
