@@ -1,6 +1,10 @@
 <template>
   <div :key="task.id" v-for="task in tasks">
-    <Task @delete-task="deleteTask" :task="task" />
+    <Task
+      @dblclick="$emit('toggle-task', task.id)"
+      @delete-task="$emit('delete-task', task.id)"
+      :task="task"
+    />
   </div>
 </template>
 
@@ -11,12 +15,8 @@ export default {
   components: {
     Task,
   },
-  emits: ["delete-task"],
-  methods: {
-    deleteTask(id) {
-      this.$emit("delete-task", id);
-    },
-  },
+  emits: ["delete-task", "toggle-task"],
+  methods: {},
   props: {
     tasks: Array,
   },

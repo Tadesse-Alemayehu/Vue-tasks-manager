@@ -1,18 +1,21 @@
 <template>
   <div class="container">
     <Header title="this is sample text" />
-    <Tasks @delete-task="deleteTask" :tasks="tasks" />
+    <AddTask @add-task="addNewTask" />
+    <Tasks @toggle-task="toggleTask" @delete-task="deleteTask" :tasks="tasks" />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
+import AddTask from "./components/partials/AddTask";
 export default {
   name: "App",
   components: {
     Header,
     Tasks,
+    AddTask,
   },
   data() {
     return {
@@ -22,7 +25,17 @@ export default {
   emits: ["delete-task"],
   methods: {
     deleteTask(id) {
-      this.tasks = this.tasks.filter((task) => task.id !== id);
+      if (confirm(`delete ${id}`))
+        this.tasks = this.tasks.filter((task) => task.id !== id);
+    },
+    toggleTask(id) {
+      this.tasks = this.tasks.map((task) =>
+        task.id === id ? { ...task, reminder: !task.reminder } : task
+      );
+    },
+    addNewTask(task) {
+      console.log(task);
+      this.tasks.push({ ...task, id: Math.floor(Math.random() * 1000) });
     },
   },
   created() {
